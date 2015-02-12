@@ -1,30 +1,6 @@
 " Use Vim settings, rather then Vi settings. This setting must be as early as
 " possible, as it has side effects.
 set nocompatible
-filetype off
-
-" set the runtime path to include Vundle and initialize
-set rtp+=~/.vim/bundle/Vundle.vim
-call vundle#begin()
-
-"let Vundle manage Vundle, required
-Plugin 'gmarik/Vundle.vim'
-Plugin 'tpope/vim-fugitive'
-Plugin 'L9'
-Plugin 'git://git.wincent.com/command-t.git'
-Plugin 'rstacruz/sparkup', {'rtp': 'vim/'}
-Plugin 'tpope/vim-rails.git'
-Plugin 'FuzzyFinder'
-Plugin 'croaky/vim-colors-github'
-Plugin 'altercation/vim-colors-solarized'
-Plugin 'MarcWeber/vim-addon-mw-utils'
-Plugin 'tomtom/tlib_vim'
-Plugin 'garbas/vim-snipmate'
-Plugin 'ervandew/supertab'
-
-"All of your Plugins must be added before the following line
-call vundle#end()            " required
-filetype plugin indent on
 
 " Leader
 let mapleader = " "
