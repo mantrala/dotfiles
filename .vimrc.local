@@ -1,0 +1,40 @@
+" set the runtime path to include Vundle and initialize
+set rtp+=~/.vim/bundle/Vundle.vim
+call vundle#begin()
+Plugin 'gmarik/Vundle.vim'
+Plugin 'tpope/vim-fugitive'
+Plugin 'L9'
+Plugin 'git://git.wincent.com/command-t.git'
+Plugin 'kien/ctrlp.vim'
+Plugin 'tpope/vim-rails'
+Plugin 'Shougo/unite.vim'
+Plugin 'terryma/vim-multiple-cursors'
+Plugin 'ervandew/supertab'
+Plugin 'tpope/vim-surround'
+Plugin 'bling/vim-airline'
+Plugin 'flazz/vim-colorschemes'
+
+" All of your Plugins must be added before the following line
+call vundle#end()            " required
+filetype plugin indent on    " required
+
+nnoremap <silent> <Leader>m :Unite -buffer-name=recent -winheight=10 file_mru<cr>
+nnoremap <Leader>b :Unite -buffer-name=buffers -winheight=10 buffer<cr>
+
+:set cursorline " highligh current line
+:imap jj <Esc>
+:set mouse=a " Enable's  mouse use
+vmap <C-c> "+y
+nnoremap ; :
+nmap <silent> ,/ :nohlsearch<CR>
+nnoremap <leader>w <C-w>v<C-w>l
+
+color molokai
+" color gruvbox
+" set background=dark    " Setting dark mode
+set guifont=Monaco:h12
+set guioptions-=T " Removes top toolbar
+set guioptions-=r " Removes right hand scroll bar
+set go-=L " Removes left hand scroll bar
+autocmd User Rails let b:surround_{char2nr('-')} = "<% \r %>" " displays <% %> correctly
+:set cpoptions+=$ " puts a $ marker for the end of words/lines in cw/c$ commands
