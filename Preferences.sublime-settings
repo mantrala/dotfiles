@@ -1,0 +1,39 @@
+{
+	"auto_complete_commit_on_tab": true,
+	"caret_extra_width": 2,
+	"color_scheme": "Packages/Seti_UI/Scheme/Seti_monokai.tmTheme",
+	"draw_white_space": "all",
+	"enable_telemetry": false,
+	"fade_fold_buttons": false,
+	"folder_exclude_patterns":
+	[
+		".bundle",
+		".git",
+		".sass-cache",
+		"tmp",
+		".hg",
+		".idea",
+		".hgcheck"
+	],
+	"font_size": 14,
+	"highlight_line": true,
+	"highlight_modified_tabs": true,
+	"ignored_packages":
+	[
+		"Vintage"
+	],
+	"line_padding_bottom": 1,
+	"line_padding_top": 1,
+	"shift_tab_unindent": true,
+	"tab_size": 2,
+	"theme": "Seti.sublime-theme",
+	"translate_tabs_to_spaces": true,
+	"trim_trailing_white_space_on_save": true,
+	"vintage_start_in_command_mode": true,
+	"vintageous_use_ctrl_keys": true,
+	"vintageous_use_sys_clipboard": true,
+	"word_separators": "./\\()\"'-,.;<>~!@#$%^&*|+=[]{}`~?",
+	"word_wrap": true,
+  "Seti_tabs_small": true,
+  "Seti_no_bar_undertabs": true,
+}
