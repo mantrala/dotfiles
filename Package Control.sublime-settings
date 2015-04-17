@@ -1,4 +1,7 @@
 {
+	"in_process_packages":
+	[
+	],
 	"installed_packages":
 	[
 		"Alignment",
@@ -15,8 +18,12 @@
 		"Package Control",
 		"PackageResourceViewer",
 		"Puppet",
+		"RuboCop",
 		"Seti_UI",
 		"SideBarEnhancements",
+		"SublimeLinter",
+		"SublimeLinter-rubocop",
+		"SublimeLinter-ruby",
 		"Syntax Highlighting for Sass",
 		"Theme - Spacegray",
 		"Vintageous"
