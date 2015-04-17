@@ -1,0 +1,8 @@
+[
+  // { "keys": ["alt+d"], "command": "goto_definition" },
+  { "keys": ["ctrl+]"], "command": "goto_definition" },
+  { "keys": ["ctrl+i"], "command": "jump_back" },
+  { "keys": ["super+alt+a"], "command": "align_tab" },
+  { "keys": ["j", "j"], "command": "_enter_normal_mode", "args": {"mode": "mode_insert"}, "context": [{"key": "vi_insert_mode_aware"}] },
+  { "keys": ["ctrl+super+r"], "command": "reveal_in_side_bar" }
+]
