@@ -1,6 +1,7 @@
 " Use Vim settings, rather then Vi settings. This setting must be as early as
 " possible, as it has side effects.
 set nocompatible
+filetype off " for FTDetect through vundle
 
 " set the runtime path to include Vundle and initialize
 set rtp+=~/.vim/bundle/Vundle.vim
@@ -13,14 +14,20 @@ Plugin 'tpope/vim-fugitive'
 Plugin 'tpope/vim-commentary'
 Plugin 'tpope/vim-bundler' " this will enable ctags for the gems included
 Plugin 'terryma/vim-multiple-cursors'
+" Plugin 'jlfwong/vim-mercenary'
+Plugin 'ludovicchabant/vim-lawrencium'
 Plugin 'ervandew/supertab'
 Plugin 'flazz/vim-colorschemes'
 Plugin 'airblade/vim-gitgutter'
 Plugin 'bling/vim-airline'
 Plugin 'scrooloose/syntastic' "Syntax Highlighting
+Plugin 'SirVer/ultisnips'
 Plugin 'honza/vim-snippets'
 Plugin 'christoomey/vim-tmux-navigator'
-
+Plugin 'godlygeek/tabular'
+Plugin 'easymotion/vim-easymotion'
+Plugin 'mhinz/vim-signify'
+Plugin 'altercation/vim-colors-solarized'
 
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
@@ -121,17 +128,24 @@ set ttymouse=xterm2
 " :imap <c-s> <Esc>:w<CR>a
 noremap <silent> <C-S>          :update<CR>
 inoremap <silent> <C-S>         <C-O>:update<CR>
-" Also map leader + s
-map <leader>s <C-S>
 
 nnoremap ; :
-colorscheme molokai
+" colorscheme hybrid
+set background=dark
+colorscheme solarized
 set guifont=Meslo\ LG\ M\ DZ\ Regular\ for\ Powerline:h14
+
+"folding settings
+set foldmethod=indent   "fold based on indent
+" set foldnestmax=10      "deepest fold is 10 levels
+set nofoldenable        "dont fold by default
+" set foldlevel=1         "this is just what i use
 
 " airline status fonts
 let g:airline_powerline_fonts = 1
-let g:airline#extensions#enabled = 1
+let g:airline#extensions#tabline#enabled = 1
 let g:airline#extensions#branch#use_vcscommand = 1
+let g:airline#extensions#tabline#buffer_nr_show = 1 " configure whether buffer numbers should be shown
 
 nmap <silent> <leader>h :nohlsearch<CR>
 
@@ -148,12 +162,22 @@ noremap <C-v> :r !pbpaste<CR><CR>
 map <silent><Leader>p :set paste<CR>o<esc>"*]p:set nopaste<cr>"
 map <silent><Leader><S-p> :set paste<CR>O<esc>"*]p:set nopaste<cr>"
 map <silent><C-v> :set paste<CR>o<esc>"*]p:set nopaste<cr>"
+set clipboard=unnamed
+if has('unnamedplus')
+  set clipboard=unnamed,unnamedplus
+endif
 
 " bind K to grep word under cursor
 nnoremap K :grep! "\b<C-R><C-W>\b"<CR>:cw<CR>
 
 " bind \ (backward slash) to grep shortcut
-nnoremap \ :!Ag<SPACE>
+command -nargs=+ -complete=file -bar Ag silent! grep! <args>|cwindow|redraw!
+
+" bind \ (backward slash) to grep shortcut
+nnoremap \ :Ag<SPACE>
+
+" grep what is selected
+vnoremap <leader>gg "hy:Ag '<C-r>h'
 
 " open quickfix list
 map <leader>c :copen<CR>
@@ -166,3 +190,25 @@ map <leader>q :q<CR>
 
 " new tab
 map <leader>t :tabnew<CR>
+
+" http://www.vimbits.com/bits/155, Annotate mercurial changes of visual lines visual mercurial annotate
+vmap <leader>ga :<C-U>!hg annotate -udqc % \| sed -n <C-R>=line("'<") <CR>,<C-R>=line("'>") <CR>p <CR>
+
+let g:UltiSnipsExpandTrigger="<tab>"
+
+map <A-]> :tab split<CR>:exec("tag ".expand("<cword>"))<CR>
+map <C-\> :vsp <CR>:exec("tag ".expand("<cword>"))<CR>
+
+map <Leader> <Plug>(easymotion-prefix)
+" Turn on case insensitive feature
+let g:EasyMotion_smartcase = 1
+" JK motions: Line motions
+map <Leader>j <Plug>(easymotion-j)
+map <Leader>k <Plug>(easymotion-k)
+
+" delete all the buffers
+map <Leader>bd :1,1000bd<CR>
+
+" change cursor based on mode
+let &t_SI = "\<Esc>Ptmux;\<Esc>\<Esc>]50;CursorShape=1\x7\<Esc>\\"
+let &t_EI = "\<Esc>Ptmux;\<Esc>\<Esc>]50;CursorShape=0\x7\<Esc>\\"
