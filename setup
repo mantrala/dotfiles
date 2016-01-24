@@ -1,0 +1,5 @@
+rm -rf ~/.tmux.conf
+rm -rf ~/.vimrc
+
+ln -s ~/.dotfiles/tmux.conf ~/.tmux.conf
+ln -s ~/.dotfiles/vimrc     ~/.vimrc
