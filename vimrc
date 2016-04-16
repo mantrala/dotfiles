@@ -13,21 +13,22 @@ Plugin 'tpope/vim-surround'
 Plugin 'tpope/vim-fugitive'
 Plugin 'tpope/vim-commentary'
 Plugin 'tpope/vim-bundler' " this will enable ctags for the gems included
+Plugin 'tpope/vim-endwise'
 Plugin 'terryma/vim-multiple-cursors'
-" Plugin 'jlfwong/vim-mercenary'
 Plugin 'ludovicchabant/vim-lawrencium'
 Plugin 'ervandew/supertab'
 Plugin 'flazz/vim-colorschemes'
 Plugin 'airblade/vim-gitgutter'
 Plugin 'bling/vim-airline'
 Plugin 'scrooloose/syntastic' "Syntax Highlighting
-Plugin 'SirVer/ultisnips'
-Plugin 'honza/vim-snippets'
 Plugin 'christoomey/vim-tmux-navigator'
 Plugin 'godlygeek/tabular'
 Plugin 'easymotion/vim-easymotion'
 Plugin 'mhinz/vim-signify'
 Plugin 'altercation/vim-colors-solarized'
+Plugin 'slim-template/vim-slim'
+Plugin 'kchmck/vim-coffee-script'
+Plugin 'jiangmiao/auto-pairs'
 
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
@@ -147,7 +148,7 @@ let g:airline#extensions#tabline#enabled = 1
 let g:airline#extensions#branch#use_vcscommand = 1
 let g:airline#extensions#tabline#buffer_nr_show = 1 " configure whether buffer numbers should be shown
 
-nmap <silent> <leader>h :nohlsearch<CR>
+nmap <silent> <leader>n :nohlsearch<CR>
 
 
 " Index ctags from any project, including those outside Rails
@@ -210,5 +211,8 @@ map <Leader>k <Plug>(easymotion-k)
 map <Leader>bd :1,1000bd<CR>
 
 " change cursor based on mode
-let &t_SI = "\<Esc>Ptmux;\<Esc>\<Esc>]50;CursorShape=1\x7\<Esc>\\"
-let &t_EI = "\<Esc>Ptmux;\<Esc>\<Esc>]50;CursorShape=0\x7\<Esc>\\"
+let &t_SI = "\e[5 q"
+let &t_EI = "\e[2 q"
+
+map <Leader>h :bp<CR>
+map <Leader>l :bn<CR>
