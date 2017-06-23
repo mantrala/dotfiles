@@ -11,9 +11,9 @@ Plugin 'kien/ctrlp.vim'
 Plugin 'tpope/vim-rails'
 Plugin 'tpope/vim-surround'
 Plugin 'tpope/vim-fugitive'
+Plugin 'tpope/vim-endwise'
 Plugin 'tpope/vim-commentary'
 Plugin 'tpope/vim-bundler' " this will enable ctags for the gems included
-Plugin 'tpope/vim-endwise'
 Plugin 'terryma/vim-multiple-cursors'
 Plugin 'ludovicchabant/vim-lawrencium'
 Plugin 'ervandew/supertab'
@@ -26,9 +26,9 @@ Plugin 'godlygeek/tabular'
 Plugin 'easymotion/vim-easymotion'
 Plugin 'mhinz/vim-signify'
 Plugin 'altercation/vim-colors-solarized'
-Plugin 'slim-template/vim-slim'
-Plugin 'kchmck/vim-coffee-script'
 Plugin 'jiangmiao/auto-pairs'
+Plugin 'cespare/vim-toml'
+Plugin 'dracula/vim'
 
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
@@ -78,6 +78,7 @@ if executable('ag')
   " ag is fast enough that CtrlP doesn't need to cache
   let g:ctrlp_use_caching = 0
 endif
+let g:ctrlp_working_path_mode = ''
 
 " Make it obvious where 80 characters is
 set textwidth=80
@@ -133,8 +134,9 @@ inoremap <silent> <C-S>         <C-O>:update<CR>
 nnoremap ; :
 " colorscheme hybrid
 set background=dark
-colorscheme solarized
-set guifont=Meslo\ LG\ M\ DZ\ Regular\ for\ Powerline:h14
+" colorscheme solarized
+color dracula
+" set guifont=Meslo\ LG\ M\ DZ\ Regular\ for\ Powerline:h14
 
 "folding settings
 set foldmethod=indent   "fold based on indent
@@ -211,8 +213,29 @@ map <Leader>k <Plug>(easymotion-k)
 map <Leader>bd :1,1000bd<CR>
 
 " change cursor based on mode
-let &t_SI = "\e[5 q"
-let &t_EI = "\e[2 q"
+" let &t_SI = "\<Esc>]50;CursorShape=1\x7"
+" let &t_EI = "\<Esc>]50;CursorShape=0\x7"
 
-map <Leader>h :bp<CR>
-map <Leader>l :bn<CR>
+let &t_SI = "\<Esc>[5 q"
+let &t_EI = "\<Esc>[1 q"
+
+" syntastic
+set statusline+=%#warningmsg#
+set statusline+=%{SyntasticStatuslineFlag()}
+set statusline+=%*
+
+let g:syntastic_always_populate_loc_list = 1
+let g:syntastic_auto_loc_list = 1
+let g:syntastic_check_on_open = 1
+let g:syntastic_check_on_wq = 0
+
+" tabularize
+if exists(":Tabularize")
+  nmap <Leader>a= :Tabularize /=<CR>
+  vmap <Leader>a= :Tabularize /=<CR>
+  nmap <Leader>a: :Tabularize /:\zs<CR>
+  vmap <Leader>a: :Tabularize /:\zs<CR>
+endif
+
+" Custom mappings for the unite buffer
+autocmd FileType unite call s:unite_keymaps()
