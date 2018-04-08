@@ -6,12 +6,24 @@
 
 - link:
     ~/.dotfiles: ''
-    ~/.tmux.conf: config/tmux.conf
-    ~/.vim: config/vim
-    ~/.vimrc: config/vimrc
-    ~/.zshrc: config/zshrc
-    ~/.git_template: git/git_template
+    ~/.tmux.conf:
+      force: true
+      path: config/tmux.conf
+    ~/.vimrc:
+      force: true
+      path: config/vimrc
+    ~/.zshrc:
+      force: true
+      path: config/zshrc
+    ~/.vim:
+      create: true
+      force: true
+      path: config/vim
+    ~/.git_template: 
+      create: true
+      path: git/git_template
     ~/.gitconfig: config/gitconfig
 
 - shell:
   - [git submodule update --init --recursive, Installing submodules]
+  - stderr: true
