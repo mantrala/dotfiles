@@ -1,0 +1,9 @@
+let g:netrw_dirhistmax  =10
+let g:netrw_dirhist_cnt =7
+let g:netrw_dirhist_1='/Users/sarathmantrala/contactually/frontend'
+let g:netrw_dirhist_2='/Users/sarathmantrala/contactually/frontend/src'
+let g:netrw_dirhist_3='/Users/sarathmantrala/contactually/frontend/src/components'
+let g:netrw_dirhist_4='/Users/sarathmantrala/contactually/frontend/src/components/AddEditContactModal'
+let g:netrw_dirhist_5='/Users/sarathmantrala/contactually/frontend/src/components/AddEditContactModal/shared'
+let g:netrw_dirhist_6='/Users/sarathmantrala/contactually/frontend/src/components/AddEditContactModal/Website'
+let g:netrw_dirhist_7='/Users/sarathmantrala/contactually/frontend/src/components/AddEditContactModal'
