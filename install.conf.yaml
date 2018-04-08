@@ -25,5 +25,4 @@
     ~/.gitconfig: config/gitconfig
 
 - shell:
-  - [git submodule update --init --recursive, Installing submodules]
-  - stderr: true
+  - [Installing submodules]
