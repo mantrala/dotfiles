@@ -4,6 +4,11 @@
 
 - clean: ['~']
 
+- shell:
+  - command: mkdir -p ~/Developer/software
+    stdout: true
+    stderr: true
+
 - link:
     ~/.dotfiles: ''
     ~/.tmux.conf:
@@ -23,6 +28,3 @@
       create: true
       path: git/git_template
     ~/.gitconfig: config/gitconfig
-
-- shell:
-  - [Installing submodules]
