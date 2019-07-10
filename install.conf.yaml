@@ -8,6 +8,19 @@
   - command: mkdir -p ~/Developer/software
     stdout: true
     stderr: true
+  - command: /usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
+    stdout: true
+    stderr: true
+  - command: brew install rbenv the_silver_searcher fzf postgresql10.5 git
+    stdout: true
+    stderr: true
+  - command: brew cask install brave-browser atom sublime-text sublime-text chromedriver slack postman postico alfred tmux iterm2 zsh
+    stdout: true
+    stderr: true
+  - command: (brew --prefix)/opt/fzf/install &&  rbenv rehash && 
+    stdout: true
+    stderr: true
+
 
 - link:
     ~/.dotfiles: ''
