@@ -11,13 +11,13 @@
   - command: /usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
     stdout: true
     stderr: true
-  - command: brew install rbenv the_silver_searcher fzf postgresql10.5 git
+  - command: brew install rbenv ruby-build the_silver_searcher fzf postgresql10.5 git nvim
     stdout: true
     stderr: true
-  - command: brew cask install brave-browser atom sublime-text sublime-text chromedriver slack postman postico alfred tmux iterm2 zsh
+  - command: brew cask install brave-browser atom sublime-text sublime-text chromedriver slack postman postico tmux iterm2
     stdout: true
     stderr: true
-  - command: (brew --prefix)/opt/fzf/install &&  rbenv rehash && 
+  - command: (brew --prefix)/opt/fzf/install && rbenv rehash && 
     stdout: true
     stderr: true
 
