@@ -8,16 +8,28 @@
   - command: mkdir -p ~/Developer/software
     stdout: true
     stderr: true
-  - command: /usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
+  - command: /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
     stdout: true
     stderr: true
-  - command: brew install rbenv ruby-build the_silver_searcher fzf postgresql10.5 git nvim
+  - command: sh -c "$(curl -fsSL https://raw.github.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
     stdout: true
     stderr: true
-  - command: brew cask install brave-browser atom sublime-text sublime-text chromedriver slack postman postico tmux iterm2
+  - command: brew install rbenv ruby-build the_silver_searcher fzf postgresql@15 git nvim
     stdout: true
     stderr: true
-  - command: (brew --prefix)/opt/fzf/install && rbenv rehash && 
+  - command: brew install zsh-autosuggestions docker docker-compose tmux
+    stdout: true
+    stderr: true
+  - command: git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
+    stdout: true
+    stderr: true
+  - command: curl -fLo ~/.vim/autoload/plug.vim --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+    stdout: true
+    stderr: true
+  - command: brew install --cask brave-browser visual-studio-code sublime-text slack chromedriver postman postico iterm2 sublime-merge karabiner-elements
+    stdout: true
+    stderr: true
+  - command: (brew --prefix)/opt/fzf/install && rbenv rehash
     stdout: true
     stderr: true
 
@@ -41,3 +53,9 @@
       create: true
       path: git/git_template
     ~/.gitconfig: config/gitconfig
+    ~/.config/nvim/init.vim:
+      create: true
+      force: true
+    ~/.config/nvim/init.vim:
+      force: true
+      path: config/init.vim

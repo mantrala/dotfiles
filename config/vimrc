@@ -31,11 +31,11 @@ Plug 'yssl/QFEnter'
 " Plug 'Shougo/denite.nvim'
 Plug 'fatih/vim-go'
 Plug 'solarnz/thrift.vim'
+Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 Plug 'junegunn/fzf.vim'
 " Plug 'Shougo/deoplete.nvim' ", { 'do': ':UpdateRemotePlugins' }
 Plug 'majutsushi/tagbar'
 Plug 'w0rp/ale'
-Plug 'neoclide/coc.nvim', {'do': 'yarn install --frozen-lockfile'}
 
 call plug#end()
 
