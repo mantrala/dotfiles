@@ -108,6 +108,7 @@ alias deploy.webhooks="bundle exec rake ctly:deploy[webhooks]"
 alias testdb="bundle exec rake environment RAILS_ENV=test ctly:load_schemas"
 alias latest.tag="git tag --sort=v:refname | tail -1"
 
+alias ccat='highlight'
 
 # sarath is amazing
 export PATH="/usr/local/opt/postgresql@15/bin:$PATH"

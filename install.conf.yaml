@@ -14,7 +14,7 @@
   - command: sh -c "$(curl -fsSL https://raw.github.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
     stdout: true
     stderr: true
-  - command: brew install rbenv ruby-build the_silver_searcher fzf postgresql@15 git nvim
+  - command: brew install rbenv ruby-build the_silver_searcher fzf highlight postgresql@15 git rg ctags nvim
     stdout: true
     stderr: true
   - command: brew install zsh-autosuggestions docker docker-compose tmux
@@ -56,6 +56,5 @@
     ~/.config/nvim/init.vim:
       create: true
       force: true
-    ~/.config/nvim/init.vim:
-      force: true
       path: config/init.vim
+      
