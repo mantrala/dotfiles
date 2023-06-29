@@ -47,6 +47,9 @@ ZSH_THEME="robbyrussell"
 # Would you like to use another custom folder than $ZSH/custom?
 # ZSH_CUSTOM=/path/to/new-custom-folder
 
+# https://github.com/romkatv/powerlevel10k/issues/568
+DISABLE_MAGIC_FUNCTIONS=true
+
 # Which plugins would you like to load? (plugins can be found in ~/.oh-my-zsh/plugins/*)
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
@@ -66,7 +69,7 @@ source $ZSH/oh-my-zsh.sh
 # if [[ -n $SSH_CONNECTION ]]; then
 #   export EDITOR='vim'
 # else
-#   export EDITOR='mvim'
+#   export EDITOR='nvim'
 # fi
 
 # Compilation flags
@@ -85,6 +88,9 @@ source $ZSH/oh-my-zsh.sh
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 eval "$(rbenv init -)"
 
+# fnm
+eval "$(fnm env --use-on-cd)"
+
 # allow [ or  ] whereever you want
 unsetopt nomatch
 
@@ -97,11 +103,11 @@ alias be="bundle exec"
 alias rubocop_changed='git status --porcelain | cut -c4- | grep '.rb' | xargs rubocop'
 
 # Aliases
-alias prod-l="heroku run rails c --app contactually-east-production --size=private-l"
-alias prod="heroku run rails c --app contactually-east-production --size=private-m"
-alias staging="heroku run rails c --app contactually-east-staging --size=private-m"
-alias deploy.staging="bundle exec rake ctly:deploy"
-alias deploy.prod="bundle exec rake ctly:deploy[production]"
+alias prod="heroku run rails c --app dpp-production"
+alias staging="heroku run rails c --app dpp-staging"
+
+alias deploy.staging="bundle exec rake dpp:deploy"
+alias deploy.prod="bundle exec rake dpp:deploy[production]"
 alias deploy.webhooks="bundle exec rake ctly:deploy[webhooks]"
 
 # Rebuilds local test database with current schema
@@ -110,7 +116,20 @@ alias latest.tag="git tag --sort=v:refname | tail -1"
 
 alias ccat='highlight'
 
+# Fix NSCFConstantString initialize error
+export OBJC_DISABLE_INITIALIZE_FORK_SAFETY="YES"
+export FONTAWESOME_NPM_AUTH_TOKEN="4D9F8592-F7F0-43C3-AF87-A2E57DEF04F6"
+
+# only search files in git
+export FZF_DEFAULT_COMMAND='rg --files'
+
+gitpr() {
+  branch=(`git rev-parse --abbrev-ref HEAD`)
+  open https://github.com/DesignPickle/dpp/compare/$branch\?expand\=1
+}
+
 # sarath is amazing
 export PATH="/usr/local/opt/postgresql@15/bin:$PATH"
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+export PATH="/opt/homebrew/opt/openjdk/bin:$PATH"

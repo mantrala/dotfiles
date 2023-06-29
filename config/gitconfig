@@ -12,8 +12,8 @@
 [init]
 	templatedir = ~/.git_template
 [user]
-	name = Sarath Mantrala
-	email = sarath.mantrala@gmail.com
+	name = Mantrala
+	email = smantrala@designpickle.com
 [filter "lfs"]
 	clean = git-lfs clean -- %f
 	smudge = git-lfs smudge -- %f

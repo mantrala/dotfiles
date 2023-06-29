@@ -17,32 +17,32 @@ Plug 'tpope/vim-fugitive'
 Plug 'tpope/vim-endwise'
 Plug 'tpope/vim-commentary'
 Plug 'tpope/vim-bundler' " this will enable ctags for the gems included
-" Plug 'ervandew/supertab'
+" Plug 'vim-syntastic/syntastic'
 Plug 'flazz/vim-colorschemes'
 Plug 'airblade/vim-gitgutter'
 Plug 'bling/vim-airline'
-Plug 'scrooloose/syntastic' "Syntax Highlighting
 Plug 'christoomey/vim-tmux-navigator'
 Plug 'easymotion/vim-easymotion'
 Plug 'mhinz/vim-signify'
 Plug 'jiangmiao/auto-pairs'
 Plug 'vim-ruby/vim-ruby'
 Plug 'yssl/QFEnter'
-" Plug 'Shougo/denite.nvim'
 Plug 'fatih/vim-go'
 Plug 'solarnz/thrift.vim'
 Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 Plug 'junegunn/fzf.vim'
-" Plug 'Shougo/deoplete.nvim' ", { 'do': ':UpdateRemotePlugins' }
 Plug 'majutsushi/tagbar'
-Plug 'w0rp/ale'
+Plug 'dense-analysis/ale'
+Plug 'kchmck/vim-coffee-script'
+Plug 'iamcco/markdown-preview.nvim', { 'do': { -> mkdp#util#install() }, 'for': ['markdown', 'vim-plug']}
+Plug 'ruanyl/vim-gh-line'
+Plug 'github/copilot.vim'
 
 call plug#end()
 
 filetype plugin indent on    " required
 
-" Leader
-let mapleader = " "
+let mapleader=" " " Leader
 
 set backspace=2   " Backspace deletes like most programs in insert mode
 set nobackup
@@ -127,8 +127,7 @@ nnoremap ; :
 " set background=dark
 " colorscheme solarized
 color Tomorrow-Night
-" color gruvbox
-" color dracula
+
 set guifont=Meslo\ LG\ L\ DZ\ Regular\ for\ Powerline:h10
 
 " airline status fonts
@@ -141,7 +140,7 @@ nmap <silent> <leader>n :nohlsearch<CR>
 
 
 " Index ctags from any project, including those outside Rails
-map <Leader>ct :!ctags -R .<CR>
+map <Leader>ct :!ctags -R --exclude='*.js' .<CR>
 
 " Switch between the last two files
 nnoremap <leader><leader> <c-^>
@@ -158,7 +157,10 @@ if has("unnamedplus") " X11 support
 endif"
 
 " open buffers
-map <leader>b :Buffers<CR>
+map <leader>bu :Buffers<CR>
+
+" open git blame
+map <leader>b :Git blame<CR>
 
 " close window
 map <leader>q :q<CR>
@@ -196,14 +198,14 @@ let &t_SI = "\<Esc>[5 q"
 let &t_EI = "\<Esc>[1 q"
 
 " syntastic
-set statusline+=%#warningmsg#
-set statusline+=%{SyntasticStatuslineFlag()}
-set statusline+=%*
+" set statusline+=%#warningmsg#
+" set statusline+=%{SyntasticStatuslineFlag()}
+" set statusline+=%*
 
-let g:syntastic_always_populate_loc_list = 1
-let g:syntastic_auto_loc_list = 1
-let g:syntastic_check_on_open = 0
-let g:syntastic_check_on_wq = 1
+" let g:syntastic_always_populate_loc_list = 1
+" let g:syntastic_auto_loc_list = 1
+" let g:syntastic_check_on_open = 0
+" let g:syntastic_check_on_wq = 1
 
 " tabularize
 if exists(":Tabularize")
@@ -212,9 +214,6 @@ if exists(":Tabularize")
   nmap <Leader>a: :Tabularize /:\zs<CR>
   vmap <Leader>a: :Tabularize /:\zs<CR>
 endif
-
-let g:deoplete#enable_at_startup = 1
-let deoplete#tag#cache_limit_size = 50000000
 
 let g:go_highlight_build_constraints = 1
 let g:go_highlight_extra_types = 1
@@ -237,12 +236,34 @@ au FileType go nmap <leader>gt :GoTest -short<cr>
 au FileType go nmap <leader>gtf :GoTestFunc -short<cr>
 au FileType go nmap <leader>c :GoCoverageToggle -short<cr>
 
+" Enable integration with airline.
+let g:airline#extensions#ale#enabled = 1
+
+" What do we use for linting
+" let g:ale_linters = {
+" \ 'javascript': ['eslint'],
+" \ 'ruby': ['rubocop']
+" \}
+" let g:ale_linters_explicit = 1
+" " Lint Ruby files with binstub
+" let g:ale_ruby_rubocop_executable = 'bin/rubocop'
 
 " Error and warning signs.
 let g:ale_sign_error = '⤫'
 let g:ale_sign_warning = '⚠'
-" Enable integration with airline.
-let g:airline#extensions#ale#enabled = 1
+" let g:ale_set_quickfix = 0
+" let g:ale_set_loclist = 1 " this returns quicklist with warnings - dont want that
+" let g:ale_set_highlights = 1
+
+highlight ALEWarning ctermbg=DarkGray
+
+
+nmap <silent> <C-e> <Plug>(ale_next_wrap)
+nmap <silent> <C-w> <Plug>(ale_previous_wrap)
+
+" let g:ale_open_list = 1 " to open errors in list
+let g:ale_lint_on_enter = 0
+let g:ale_lint_on_save = 1
 
 nmap <C-p> :Files<CR>
 nmap <leader>f :Lines<CR>
@@ -256,6 +277,8 @@ if executable("rg")
           \   <bang>0 ? fzf#vim#with_preview('up:60%')
           \           : fzf#vim#with_preview('right:50%:hidden', '?'),
           \   <bang>0)
+
+  let g:ctrlp_user_command = 'rg %s --files --hidden --color=never -g "!{**/node_modules/*}"'
 
   " bind \ (backward slash) to grep shortcut
   nnoremap \ :Rg<SPACE>
