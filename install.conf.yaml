@@ -17,7 +17,7 @@
   - command: brew install rbenv ruby-build the_silver_searcher fzf highlight postgresql@15 git rg ctags nvim redis fnm
     stdout: true
     stderr: true
-  - command: brew install zsh-autosuggestions docker docker-compose tmux
+  - command: brew install zsh-autosuggestions docker docker-compose tmux meetingbar
     stdout: true
     stderr: true
   - command: git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm

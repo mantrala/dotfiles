@@ -27,7 +27,7 @@ Plug 'mhinz/vim-signify'
 Plug 'jiangmiao/auto-pairs'
 Plug 'vim-ruby/vim-ruby'
 Plug 'yssl/QFEnter'
-Plug 'fatih/vim-go'
+Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' }
 Plug 'solarnz/thrift.vim'
 Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 Plug 'junegunn/fzf.vim'
@@ -37,6 +37,7 @@ Plug 'kchmck/vim-coffee-script'
 Plug 'iamcco/markdown-preview.nvim', { 'do': { -> mkdp#util#install() }, 'for': ['markdown', 'vim-plug']}
 Plug 'ruanyl/vim-gh-line'
 Plug 'github/copilot.vim'
+Plug 'lukas-reineke/indent-blankline.nvim' " indent guide lines
 
 call plug#end()
 
@@ -86,10 +87,11 @@ set number
 set numberwidth=5
 
 " fold
-set foldmethod=syntax
-set foldnestmax=1
+set foldmethod=indent
+set nofoldenable
+set foldlevel=99
+set foldnestmax=10
 let go_fold=1
-set foldlevelstart=99
 let g:go_fmt_experimental = 1
 
 "HTML Editing
